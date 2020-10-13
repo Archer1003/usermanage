@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nav component demo</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../../layui-v2.2.5/layui/css/layui.css"  media="all">
+    <script src="../../../layui-v2.2.5/layui/layui.js" charset="utf-8"></script>
+    <style type="text/css">
+        .layui-fluid {
+            background-color: #222;
+        }
+        .layui-header {
+            position: fixed;
+            width: 100%;
+            height:46px;
+        }
+        .layui-nav {
+            background-color: #222;
+        }
+        .develop-nav .layui-nav-item {
+            line-height: 46px;
+        }
+        .layui-nav-img {
+            width: 95px;
+        }
+        .nav-tools {
+            float: right;
+        }
+        .nav-tools .layui-nav-item{
+            line-height: 46px;
+        }
+        .layui-carousel {
+            margin: 0 auto;
+        }
+        .layui-card {
+            height:240px;
+            border: 1px solid #E6E6E6;
+        }
+        .portal-container{
+            background: #FFFFFF;
+            margin: 20px;
+        }
+        .content-block {
+            text-align: center;
+            padding-bottom: 60px;
+            padding-top: 60px;
+        }
+        .content-block {
+            max-width: 1200px;
+            clear: both;
+            margin: 0 auto;
+            padding: 50px 10px;
+            transition: padding .3s ease-out;
+        }
+        .caption {
+            margin-bottom: 6px;
+        }
+
+        .caption {
+            font-size: 24px;
+            color: #333;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+        .descript {
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #999999;
+        }
+        .developer-train .layer-figure {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            height: 79px;
+        }
+        .developer-train .title {
+            line-height: 79px;
+        }
+        .developer-train .dev-text {
+            text-align: center;
+            margin: 30px 30px 0;
+            color: #6F7479;
+        }
+        .developer-train .buttond {
+            position: absolute;
+            bottom: 30px;
+            right: 35.842%;
+            text-align: center;
+            margin: auto;
+            width: 100px;
+            height: 32px;
+            border: 1px solid #E41F2B;
+            font-size: 14px;
+            color: #E41F2B;
+        }
+        .developer-train .buttond p {
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layui-fluid layui-header">
+        <div class="layui-row">
+            <div class="layui-col-md9">
+                <ul class="layui-nav develop-nav" lay-filter="">
+                    <li class="layui-nav-item"><a href=""><img src="logo.png" class="layui-nav-img"></a></li>
+                    <li class="layui-nav-item"><a href="">首页</a></li>
+                    <li class="layui-nav-item layui-this"><a href="">开放API</a></li>
+                    <li class="layui-nav-item"><a href="">开发者资源</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">文档中心</a>
+                        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                            <dd><a href="">移动模块</a></dd>
+                            <dd><a href="">后台模版</a></dd>
+                            <dd><a href="">电商平台</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">F&Q</a></li>
+                </ul>
+            </div>
+            <div class="layui-col-md3">
+                <ul class="layui-nav nav-tools" lay-filter="">
+                    <li class="layui-nav-item">
+                        <a href="">控制台</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">登录</a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="">注册</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+    <div id="content" style="height: 440px;background: #ccc">
+        <div class="layui-carousel" id="test1" lay-filter="test1">
+            <div carousel-item="">
+                <div><img src="1.png"/></div>
+                <div><img src="2.png"/></div>
+                <div><img src="3.png"/></div>
+                <div><img src="4.png"/></div>
+                <div><img src="5.png"/></div>
+                <div><img src="6.png"/></div>
+                <div><img src="7.png"/></div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid portal-container">
+        <div class="content-block developer-train-block developer-train">
+            <div class="titleBar">
+                <h3 class="caption">开发者培训认证</h3>
+
+                <p class="descript">中服云提供专业的培训认证内容，助您提升专项技能，成就职场新机遇！</p>
+            </div>
+            <div class="layui-row layui-col-space30">
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                            <div class="tile part4-layer">
+                                <div class="layer-figure part5-bg01">
+                                    <h3 class="title">专业的培训认证体系</h3>
+                                </div>
+                                <div class="layer-text">
+                                    <p class="dev-text">中服云精心打造专业的认证体系，为您扩展职场发展的机遇，成为您技术能力的证明。</p>
+                                </div>
+                                <div class="buttond">
+                                    <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-1"><p>
+                                        查看详情</p></a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                        <div class="tile part4-layer">
+                            <div class="layer-figure part5-bg02">
+                                <h3 class="title">精心打造的培训课程</h3>
+                            </div>
+                            <div class="layer-text">
+                                <p class="dev-text">云计算、大数据、数据库等一站式在线学习平台。</p>
+                            </div>
+                            <div class="buttond">
+                                <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-2"><p>
+                                    查看详情</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                        <div class="tile part4-layer">
+                            <div class="layer-figure part5-bg02">
+                                <h3 class="title">精心打造的培训课程</h3>
+                            </div>
+                            <div class="layer-text">
+                                <p class="dev-text">云计算、大数据、数据库等一站式在线学习平台。</p>
+                            </div>
+                            <div class="buttond">
+                                <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-2"><p>
+                                    查看详情</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                        <div class="tile part4-layer">
+                            <div class="layer-figure part5-bg02">
+                                <h3 class="title">精心打造的培训课程</h3>
+                            </div>
+                            <div class="layer-text">
+                                <p class="dev-text">云计算、大数据、数据库等一站式在线学习平台。</p>
+                            </div>
+                            <div class="buttond">
+                                <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-2"><p>
+                                    查看详情</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                        <div class="tile part4-layer">
+                            <div class="layer-figure part5-bg02">
+                                <h3 class="title">精心打造的培训课程</h3>
+                            </div>
+                            <div class="layer-text">
+                                <p class="dev-text">云计算、大数据、数据库等一站式在线学习平台。</p>
+                            </div>
+                            <div class="buttond">
+                                <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-2"><p>
+                                    查看详情</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-sm4 layui-col-md3 layui-col-lg4">
+                    <div class="layui-card">
+                        <div class="tile part4-layer">
+                            <div class="layer-figure part5-bg02">
+                                <h3 class="title">精心打造的培训课程</h3>
+                            </div>
+                            <div class="layer-text">
+                                <p class="dev-text">云计算、大数据、数据库等一站式在线学习平台。</p>
+                            </div>
+                            <div class="buttond">
+                                <a class="page_click_blank" href="http://developer.huaweicloud.com/training#section-2"><p>
+                                    查看详情</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+layui.use(['element','layer','carousel'], function(){
+  var element = layui.element;
+    var carousel = layui.carousel;
+    //建造实例
+    carousel.render({
+        elem: '#test1'
+        ,width: '778px' //设置容器宽度
+        ,height:'440px'
+        ,arrow: 'always' //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+    });
+
+});
+</script>
+</body>
+</html>

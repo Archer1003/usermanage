@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab component demo</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui-v2.2.5/layui/css/layui.css"  media="all">
+    <script src="../../layui-v2.2.5/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">网站设置</li>
+    <li>用户管理</li>
+    <li>权限分配</li>
+    <li>商品管理</li>
+    <li>订单管理</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">内容1</div>
+    <div class="layui-tab-item">内容2</div>
+    <div class="layui-tab-item">内容3</div>
+    <div class="layui-tab-item">内容4</div>
+    <div class="layui-tab-item">内容5</div>
+  </div>
+</div>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">网站设置</li>
+        <li>用户管理</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content"></div>
+</div>
+<div class="layui-tab layui-tab-card" lay-filter="tab-card" lay-allowClose="true">
+    <ul class="layui-tab-title">
+        <li class="layui-this">网站设置</li>
+        <li>用户管理</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">1</div>
+        <div class="layui-tab-item">2</div>
+        <div class="layui-tab-item">3</div>
+        <div class="layui-tab-item">4</div>
+        <div class="layui-tab-item">5</div>
+    </div>
+</div>
+<div class="layui-btn-group demoTab">
+    <button class="layui-btn" data-type="addtab">新增tab</button>
+</div>
+<script>
+//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+layui.use(['element','layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+    //一些事件监听
+    element.on('tab(docDemoTabBrief)', function(data){
+        layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
+    });
+    element.on('tabDelete(tab-card)', function(data){
+        layer.msg('删除了'+ data.index);
+    });
+    var $ = layui.$, active = {
+        addtab: function(){ //新增tab
+            element.tabAdd('tab-card', {
+                title: '新增选项卡'
+                ,content: '新增选项卡的内容' //支持传入html
+                ,id: 'sdfs'
+            });
+        }
+    };
+    $('.demoTab .layui-btn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+});
+</script>
+</body>
+</html>

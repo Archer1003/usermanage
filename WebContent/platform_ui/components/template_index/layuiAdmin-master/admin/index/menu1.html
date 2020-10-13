@@ -1,0 +1,167 @@
+<div class="layui-card">
+    <div class="layui-card-header">menu1 demo</div>
+    <div class="layui-card-body">
+        <div class="demoTable">
+            <div style="margin-bottom: 5px;">
+                <button class="layui-btn layui-btn-mini layui-btn-normal  add-btn" data-type="add" data-url="menu-add.html">添加</button>
+            </div>
+                                   搜索用户名：
+            <div class="layui-inline">
+                <input class="layui-input" name="username" id="demoReload" autocomplete="off">
+            </div>
+            <button class="layui-btn" data-type="reload">搜索</button>
+        </div>
+        <div style="margin-bottom: 10px;"></div>
+        <div class="layui-btn-group demoTable">
+            <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
+            <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
+            <button class="layui-btn" data-type="isAll">验证是否全选</button>
+        </div>
+        <table id="dynamicTable" class="layui-table"  lay-filter="demo">
+        </table>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" data-url="article-detail.html">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="switchTpl">
+    <input type="checkbox" name="sex" value="{{d.classify}}" lay-skin="switch" lay-text="女|男" lay-filter="sexDemo" {{ d.classify == '作家' ? 'checked' : '' }}>
+</script>
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        var laypage = layui.laypage;
+        var form = layui.form;
+        table.render({
+            elem:'#dynamicTable',
+            url:'table.json',
+            limit: 10,  //如果是异步请求，只是作用用请求的参数
+            page:true,
+            id:'idTest',
+            cols:  [[ //标题栏
+                {type: 'checkbox',fixed: 'left'}
+                ,{field:'id',title: 'ID', width:80, sort: true, fixed: true}
+                ,{field:'username',title: '用户名', width:80}
+                ,{field:'sex',title: '性别', width:80, sort: true,templet: '#switchTpl', unresize: true}
+                ,{field:'city',title: '城市', width:80}
+                ,{field:'sign',title: '签名', width:160}
+                ,{field:'experience',title: '积分', width:80, sort: true}
+                ,{field:'classify',title: '职业', width:80}
+                ,{field:'wealth',title: '财富', width:135, sort: true}
+                ,{field:'score',title: '评分', width:80, sort: true, fixed: 'right'}
+                ,{fixed: 'right', title: '操作',align:'center', toolbar: '#barDemo'}
+
+            ]],
+            done: function(res, curr, count){
+                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+
+                //得到当前页码
+                console.log(curr);
+
+                //得到数据总量
+                console.log(count);
+            }
+        });
+        laypage.render({
+            elem: '#dynamicTable'
+            ,jump: function(obj, first){
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if(!first){
+                    //do something
+                }
+            }
+        });
+        //监听性别checkbox复选框开关事件
+        form.on('switch(sexDemo)',function (data) {
+            layer.tips(data.value, data.othis);
+            console.log(data);
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            layer.alert('选中行：<br>'+ JSON.stringify(obj))
+        });
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+               // layer.msg('ID：'+ data.id + ' 的查看操作');
+                var url=$(this).attr('data-url');
+               // window.location.href=url;
+                $('#main-container').load(url);
+                return false;
+
+
+
+
+
+
+
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }
+        });
+
+        var $ = layui.$, active = {
+            add:function (element) {
+                var url=$(this).attr('data-url');
+                var index = layer.open({
+                    type: 2,
+                    title: '添加',
+                    area: ['800px', '620px'],
+                    fixed: false, //不固定
+                    content: url
+                });
+                return false;
+            },
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            username: demoReload.val()
+                        }
+                    }
+                });
+            },
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            ,getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+            }
+            ,isAll: function(){ //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选': '未全选')
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>

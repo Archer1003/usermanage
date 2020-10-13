@@ -1,0 +1,44 @@
+<div class="layui-row">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">menu2 header1</div>
+            <div class="layui-card-body"></div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">menu2 header2</div>
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="menu1.html" >网站设置</li>
+                        <li lay-id="menu-add.html" >用户管理</li>
+                        <li lay-id="menu3.html" >权限分配</li>
+                        <li lay-id="menu4.html" >商品管理</li>
+                        <li lay-id="menu5.html" >订单管理</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show"></div>
+                        <div class="layui-tab-item"></div>
+                        <div class="layui-tab-item"></div>
+                        <div class="layui-tab-item"></div>
+                        <div class="layui-tab-item"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element','layer'], function(){
+        var element = layui.element;
+        var layer = layui.layer;
+        var $ = layui.$;
+        $('div.layui-tab-content div.layui-tab-item.layui-show').load('menu1.html');
+        //一些事件监听
+        element.on('tab(docDemoTabBrief)', function(data){
+            $(data.elem).find('div.layui-tab-content div.layui-tab-item.layui-show').load($(this).attr('lay-id'));
+        });
+    });
+</script>
+
+

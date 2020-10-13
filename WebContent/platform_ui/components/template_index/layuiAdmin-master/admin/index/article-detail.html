@@ -1,0 +1,54 @@
+<div class="page-content-wrap">
+	<form class="layui-form">
+		<div class="layui-tab" lay-filter="detailtab">
+			<ul class="layui-tab-title">
+				<li data-url="menu1.html">列表</li>
+				<li class="layui-this">详情</li>
+
+			</ul>
+			<div class="layui-tab-content" style="position: static;">
+				<div class="layui-tab-item"></div>
+				<div class="layui-tab-item layui-show">
+					<div class="layui-form-item">
+						<label class="layui-form-label">用户名：</label>
+						<div class="layui-input-block">
+							<label class="layui-form-label">小李</label>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">性别：</label>
+						<div class="layui-input-block">
+							<label class="layui-form-label">男</label>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">城市：</label>
+						<div class="layui-input-block">
+							<label class="layui-form-label">广州</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+    //Demo
+    layui.use(['form','element','layer'], function() {
+        var form = layui.form;
+        var element = layui.element;
+        var layer = layui.layer;
+        var $ = layui.$;
+        form.render();
+        //一些事件监听
+        element.on('tab(detailtab)', function(data){
+            if (data.index == 0) {
+                var url=$(this).attr('data-url');
+                if (url) {
+                    $('#main-container').load(url);
+				}
+                return false;
+			}
+        });
+    });
+</script>

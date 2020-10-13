@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date component demo</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../layui-v2.2.5/layui/css/layui.css"  media="all">
+    <script src="../../layui-v2.2.5/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    年选择器：<input type="text" class="layui-input" id="test1">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    年月选择器：<input type="text" class="layui-input" id="test2">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    日期选择器：<input type="text" class="layui-input" id="test3">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    时间选择器：<input type="text" class="layui-input" id="test4">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    日期时间选择器：<input type="text" class="layui-input" id="test5">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    日期时间范围选择器：<input type="text" class="layui-input" id="test6">
+</div>
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    自定义日期时间格式：<input type="text" class="layui-input" id="test7">
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+      var ins=  laydate.render({
+            elem: '#test1' //指定元素
+            ,type:'year',
+            value: new Date()
+            ,change: function(value, date, endDate){
+            console.log(value); //得到日期生成的值，如：2017-08-18
+            console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+              ins.hint(value);
+            }
+            ,btns: ['clear', 'confirm']
+            ,calendar: true
+            ,done:function (value, date) {
+                console.log(date);
+            },ready: function(date){
+                console.log(date); //得到初始的日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            }
+        });
+        //年月选择
+        laydate.render({
+            elem: '#test2'
+            ,type: 'month'
+        });
+
+//日期选择
+        laydate.render({
+            elem: '#test3'
+        });
+
+//时间选择
+        laydate.render({
+            elem: '#test4'
+            ,type: 'time'
+        });
+
+//日期时间选择
+        laydate.render({
+            elem: '#test5'
+            ,type: 'datetime'
+        });
+        //日期时间范围选择
+        laydate.render({
+            elem: '#test6'
+            ,type: 'datetime'
+            ,range: true //或 range: '~' 来自定义分割字符
+        });
+        //自定义日期时间格式
+        laydate.render({
+            elem: '#test7'
+            ,type: 'datetime'
+            ,theme: 'molv'
+            ,format: 'yyyy/MM/dd HH:mm:ss'
+        });
+    });
+</script>
+</body>
+</html>

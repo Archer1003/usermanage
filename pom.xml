@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   
+http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>com.cserver.saas</artifactId>
+		<groupId>com.cserver</groupId>
+		<version>1.0.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.cserver</groupId>
+    <artifactId>com.cserver.saas.system.usermanage.web</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <name>com.cserver.saas.system.usermanage.web Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+ 	<dependencies>
+		
+	</dependencies>
+
+    <build>
+    	<finalName>usermanage</finalName>
+		<outputDirectory>target\classes</outputDirectory>
+		<testOutputDirectory>target\classes</testOutputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+						<manifestFile>WebContent/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+					<webappDirectory>WebContent</webappDirectory>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkMode>pertest</forkMode>
+					<argLine>-enableassertions</argLine>
+					<includes>
+						<include>**\*tttTest.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<extdirs>${basedir}/WebContent/WEB-INF/lib</extdirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+		<extensions>
+		</extensions>
+	</build>
+</project>

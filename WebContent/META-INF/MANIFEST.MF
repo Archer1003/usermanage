@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.1
+Created-By: 1.6.0_29-b11 (Sun Microsystems Inc.)
+Bundle-ClassPath: 
+DynamicImport-Package: *
+Require-TldBundle: org.apache.taglibs.standard.glassfish
+Bundle-Version: 1.0.0
+Tool: Bundlor 1.0.0
+Bundle-Name: com.cserver.saas.system.usermanage.web
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.cserver.saas.system.usermanage.web
+Web-ContextPath: /usermanage
+Import-Package: 
+ 
+Bundle-Creator: hsiliev
+Implementation-Title: org.eclipse.virgo.apps.admin.web
+Implementation-Version: 3.0.2.RELEASE
+
